@@ -3,8 +3,10 @@ package dmacc.beans;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +36,10 @@ public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private LocalDate date;
-	@ManyToOne
+	private LocalDate orderDate;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Customer customer;
-	@OneToMany
+	@OneToMany //(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<MenuItems> menuItem;
 	@OneToOne
 	private PaymentInfo payment;
