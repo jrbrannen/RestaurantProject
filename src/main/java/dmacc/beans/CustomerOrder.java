@@ -39,7 +39,7 @@ public class CustomerOrder {
 	private LocalDate orderDate;
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Customer customer;
-	@OneToMany //(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany //(cascade=CascadeType.ALL, fetch=FetchType.EAGER)//@ElementCollection(targetClass=MenuItems.class)
 	private List<MenuItems> menuItem;
 	@OneToOne
 	private PaymentInfo payment;
