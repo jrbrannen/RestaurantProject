@@ -1,6 +1,7 @@
 package dmacc.beans;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,11 +35,8 @@ public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private LocalDate orderDate;
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private Customer customer;
-	@OneToMany //(cascade=CascadeType.ALL, fetch=FetchType.EAGER)//@ElementCollection(targetClass=MenuItems.class)
-	private List<MenuItems> menuItem;
-	@OneToOne
-	private PaymentInfo payment;
+	 @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	    private List<MenuItems> items = new ArrayList<MenuItems>();
 }

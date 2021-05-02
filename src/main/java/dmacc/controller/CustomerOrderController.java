@@ -48,13 +48,12 @@ public class CustomerOrderController {
 	@GetMapping("/addCustomerOrder")
 	public String addCustomerOrder(Model model) {
 			CustomerOrder o = new CustomerOrder();
-			List<MenuItems> itemsList = r.findAll();
 			model.addAttribute("newCustomerOrder", o);
-			model.addAttribute("itemsList", itemsList);
+			model.addAttribute("menuItems", r.findAll());
 			return "CustomerOrder";
 	}
 
-	@PostMapping("/addCustomerOrder")
+	@PostMapping("/update/addCustomerOrder")
 	public String addCustomerOrder(@ModelAttribute CustomerOrder o, Model model) {
 		repo.save(o);
 		return viewCustomerOrder(model);
