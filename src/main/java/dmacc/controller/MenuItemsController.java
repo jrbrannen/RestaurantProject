@@ -18,7 +18,7 @@ public class MenuItemsController {
 	MenuItemsRepoitory repo;
 
 	// view current menus
-	@GetMapping({ "displayMenu" })
+	@GetMapping("/displayMenu")
 	public String viewMenu(Model model) {
 		model.addAttribute("menuItems", repo.findAll());
 		return "displayMenu";

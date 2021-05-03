@@ -31,6 +31,7 @@ public class CustomerOrderController {
 	@Autowired
 	MenuItemsRepoitory r;
 	
+	
 	// display an order
 	@GetMapping({"update/displayCustomerOrder"})
 	public String viewCustomerOrder(Model model) {
@@ -40,7 +41,9 @@ public class CustomerOrderController {
 			return addCustomerOrder(model);
 		}
 **/
-		model.addAttribute("orderDetails", repo.findAll());
+		List<MenuItems> itemsList = r.findTop1ByOrderByIdDesc();
+		model.addAttribute("itemsList", itemsList);
+		model.addAttribute("orderDetails", repo.findTop1ByOrderByIdDesc());
 		return "displayCustomerOrder";
 	}
 	
@@ -65,7 +68,7 @@ public class CustomerOrderController {
 	@GetMapping("/editOrder/{id}")
 	public String editCustomerOrder(@PathVariable("id") long id, Model model) {
 		CustomerOrder o = repo.findById(id).orElse(null);
-		model.addAttribute("newOrder", o);
+		model.addAttribute("newCustomerOrder", o);
 		return "CustomerOrder";
 	}
 
@@ -82,4 +85,6 @@ public class CustomerOrderController {
 		repo.delete(o);
 		return viewCustomerOrder(model);
 	}
+	
+	
 }
