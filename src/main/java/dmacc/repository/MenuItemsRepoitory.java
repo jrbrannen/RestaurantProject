@@ -14,4 +14,5 @@ import dmacc.beans.MenuItems;
 public interface MenuItemsRepoitory extends JpaRepository<MenuItems, Long> {
 	
 	List<MenuItems> findTop1ByOrderByIdDesc();
+	List<MenuItems> findTop10ByOrderByIdDesc();
 }

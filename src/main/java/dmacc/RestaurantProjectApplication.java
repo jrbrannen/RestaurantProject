@@ -9,3 +9,4 @@ public class RestaurantProjectApplication {
 		SpringApplication.run(RestaurantProjectApplication.class, args);
 	}
 }
+

@@ -13,6 +13,7 @@ import dmacc.beans.CustomerOrder;
 @Repository
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Long> {
 	List<CustomerOrder> findTop1ByOrderByIdDesc();
+	List<CustomerOrder> findTop10ByOrderByIdDesc();
 	
 
 }
